@@ -1,13 +1,18 @@
-from search import search_prompt
+from search import get_answer
 
-def main():
-    chain = search_prompt()
+BOLD, CYAN, RESET = "\033[1m", "\033[36m", "\033[0m"
 
-    if not chain:
-        print("Não foi possível iniciar o chat. Verifique os erros de inicialização.")
-        return
-    
-    pass
 
-if __name__ == "__main__":
-    main()
+def init_chat():
+    while True:
+        try:
+            question = input(f'{BOLD}Pergunta (digite sair para encerrar):{RESET} ').strip()
+            if not question:
+                continue
+            if question.lower() == 'sair':
+                break
+            answer = get_answer(question)
+            print(f'{CYAN}RESPOSTA:{RESET} {answer}\n')
+        except (EOFError, KeyboardInterrupt):
+            print()
+            break

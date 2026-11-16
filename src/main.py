@@ -1,5 +1,6 @@
 import argparse
 
+from chat import init_chat
 from config import load_get_config
 from ingest import ingest_pdf
 
@@ -23,7 +24,7 @@ def main():
     if args.command == 'ingest':
         ingest_pdf(args.pdf_name)
     elif args.command == 'chat':
-        pass
+        init_chat()
 
 
 if __name__ == '__main__':
